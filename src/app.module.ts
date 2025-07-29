@@ -11,6 +11,7 @@ import { HttpLoggerMiddleware } from './shared/middleware/http-logger.middleware
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { UserRateLimiterInterceptor } from './shared/interceptors/user-rate-limiter.interceptor';
+import { BookModule } from './book/book.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { UserRateLimiterInterceptor } from './shared/interceptors/user-rate-limi
     AppLoggerModule,
     UserModule,
     AuthModule,
+    BookModule,
   ],
   controllers: [AppController],
   providers: [
