@@ -20,7 +20,7 @@ export class AppLoggerService implements LoggerService {
         format.errors({ stack: true }),
         format.json(),
       ),
-      defaultMeta: { service: 'raidme-api' },
+      defaultMeta: { service: 'api' },
       transports: [
         new transports.Console({
           format: format.combine(
