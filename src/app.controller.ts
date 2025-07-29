@@ -5,8 +5,21 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Get('/')
+  root() {
+    const message = this.appService.getHelloMessage();
+    return {
+      status: 'success',
+      message,
+    };
+  }
+
+  @Get('/api/v1')
+  getHelloMessage() {
+    const message = this.appService.getHelloMessage();
+    return {
+      status: 'success',
+      message,
+    };
   }
 }
