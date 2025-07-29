@@ -24,9 +24,14 @@ export const DEFAULT_RATE_LIMITS = {
     REQUEST_LIMIT: '100',
     WINDOW_DURATION_SECONDS: '60', // 1 minute
   },
+  USER: {
+    REQUEST_LIMIT: '1000',
+    WINDOW_DURATION_SECONDS: '3600', // 1 hour
+  },
 };
 
 export const REDIS_KEY_PREFIXES = {
   IP_RATE_LIMIT: 'rate_limit:ip',
+  USER_RATE_LIMIT: 'user_rate_limit',
   API_KEY_RATE_LIMIT: 'rate_limit:api_key',
 } as const;
