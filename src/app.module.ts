@@ -1,10 +1,12 @@
 import 'dotenv/config';
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
-import { AppLoggerModule } from './database/shared/logger/app-logger.module';
+import { AppLoggerModule } from './shared/logger/app-logger.module';
+import { RateLimiterMiddleware } from './shared/middleware/rate-limiter.middleware';
+import { HttpLoggerMiddleware } from './shared/middleware/http-logger.middleware';
 
 @Module({
   imports: [
@@ -15,4 +17,8 @@ import { AppLoggerModule } from './database/shared/logger/app-logger.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(RateLimiterMiddleware, HttpLoggerMiddleware).forRoutes('*');
+  }
+}
